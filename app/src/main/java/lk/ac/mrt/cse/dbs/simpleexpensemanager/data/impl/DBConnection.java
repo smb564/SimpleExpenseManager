@@ -13,7 +13,7 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
  * Created by Supun on 11/20/2016.
  */
 public class DBConnection{
-
+    // Singleton pattern is used
     private static DBConnection connection;
     private SQLiteDatabase db;
 
@@ -36,13 +36,6 @@ public class DBConnection{
                 "Date DATE," +
                 "Type INTEGER," +
                 "FOREIGN KEY (Acc_No) REFERENCES Account(Acc_No))");
-
-//        // For testing purposes
-//        db.execSQL("INSERT INTO Account VALUES ('123456z', 'BOC','Supun Abeysinghe', 5)");
-//        db.execSQL("INSERT INTO Account VALUES ('12s456z', 'BOsdaC','Supuasdn Absadeysinghe', 10000)");
-//        db.execSQL("INSERT INTO Account VALUES ('1ss56z', 'BOsC','Supuasdn Abeysinghe', 10000)");
-//
-//        db.execSQL("INSERT INTO Transactions VALUES ('0001','12s456z', 500, '19-05-1994')");
 
     }
 
