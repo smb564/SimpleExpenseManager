@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.net.ConnectException;
 
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
+
 /**
  * Created by Supun on 11/20/2016.
  */
@@ -25,11 +27,14 @@ public class DBConnection{
                 "Init_amount REAL" +
                 ");");
 
+        // Auto increment is implicitly added to INTEGER PRIMARY KEY when the value is not explicitly given
+        // Type, 0 shows a Expense, 1 shows a Income
         db.execSQL("CREATE TABLE IF NOT EXISTS Transactions(" +
                 "Transaction_id INTEGER PRIMARY KEY," +
                 "Acc_No TEXT," +
                 "Amount REAL," +
                 "Date DATE," +
+                "Type INTEGER," +
                 "FOREIGN KEY (Acc_No) REFERENCES Account(Acc_No))");
 
 //        // For testing purposes
