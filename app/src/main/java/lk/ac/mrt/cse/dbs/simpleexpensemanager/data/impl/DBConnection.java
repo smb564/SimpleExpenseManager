@@ -1,6 +1,7 @@
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -16,7 +17,6 @@ public class DBConnection{
 
     private DBConnection(Context context){
         db = context.openOrCreateDatabase("140009A", context.MODE_PRIVATE, null);
-
         // if the table does not exists create tables
         db.execSQL("CREATE TABLE IF NOT EXISTS Account(" +
                 "Acc_No TEXT PRIMARY KEY," +
@@ -25,12 +25,19 @@ public class DBConnection{
                 "Init_amount REAL" +
                 ");");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Transaction(" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS Transactions(" +
                 "Transaction_id INTEGER PRIMARY KEY," +
                 "Acc_No TEXT," +
                 "Amount REAL," +
                 "Date DATE," +
-                "FOREIGN KEY (Acc_No) REFERENCES Account(Acc_No)");
+                "FOREIGN KEY (Acc_No) REFERENCES Account(Acc_No))");
+
+//        // For testing purposes
+//        db.execSQL("INSERT INTO Account VALUES ('123456z', 'BOC','Supun Abeysinghe', 5)");
+//        db.execSQL("INSERT INTO Account VALUES ('12s456z', 'BOsdaC','Supuasdn Absadeysinghe', 10000)");
+//        db.execSQL("INSERT INTO Account VALUES ('1ss56z', 'BOsC','Supuasdn Abeysinghe', 10000)");
+//
+//        db.execSQL("INSERT INTO Transactions VALUES ('0001','12s456z', 500, '19-05-1994')");
 
     }
 
@@ -41,6 +48,7 @@ public class DBConnection{
         return connection;
     }
 
-
-
+    public SQLiteDatabase getDatabase(){
+        return db;
+    }
 }
